@@ -16,6 +16,6 @@ http.createServer( function(req, res) {
         console.log(filename)
         res.end();
     });
-}).listen(8000);
+}).listen(8000);//listen on non-assignable port to avoid the client and server to load on the same port
 
-console.log('Server is Listening at port 8080');
+console.log('Server is Listening at port 8000');
