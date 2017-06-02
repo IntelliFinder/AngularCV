@@ -15,8 +15,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class DataService{
   //server-mendated links
-  private _flowerURL='http://localhost:3000/flower.json'
-  private _customerURL='http://localhost:3000/customer.json'
+  private _flowerURL='http://localhost:3000/flower.json';
+  private _customerURL='http://localhost:3000/customer.json';
   //constructor - best practice not to have any methods inside it
   constructor(private _http:Http){}
   //Orly - This method returns all the flower list data

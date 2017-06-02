@@ -17,6 +17,7 @@ export class FlowerListComponent  implements OnInit ,OnDestroy{
   filterByFlowerName:string="";
   //Orly - This is the data object array that will be used to fill the html table
   flowers:IFlower[];
+  errorMessage:string="";
   //Orly - Note that defining the constructor with the private variable _dataService causes the systme to inject the dependencies when the component is constructed
   constructor(private _dataService:DataService){};
 
@@ -26,7 +27,9 @@ export class FlowerListComponent  implements OnInit ,OnDestroy{
   ngOnInit():void{
     console.log('Initializing FlowerListComponent......');
     //Orly - this is the invocation of the method that returns the flower list data
-      this.flowers = this._dataService.getFlower();
+      this._dataService.getFlower()
+      .subscribe(flowers=>this.flowers=<IFlower[]>flowers,
+          error=>this.errorMessage=<any>error);
   }
   //Orly - This method is being used when the component is destroyed - component life cycle hook
   ngOnDestroy():void{

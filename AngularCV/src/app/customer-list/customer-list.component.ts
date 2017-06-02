@@ -16,13 +16,16 @@ export class CustomerListComponent implements OnInit ,OnDestroy{
   filterByCustomerLastName:string="";
   //Orly - This is the data object array that will be used to fill the html table
   customers:ICustomer[];
+  errorMessage:string="";
   //Orly - Note that defining the constructor with the private variable _dataService causes the systme to inject the dependencies when the component is constructed
   constructor(private _dataService:DataService){};
   //Orly - This method is being used when the component is initialized - component life cycle hook
   ngOnInit():void{
     console.log('Initializing CustomerListComponent......');
     //Orly - this is the invocation of the method that returns the customer list data
-      this.customers = this._dataService.getCustomer();
+      this._dataService.getCustomer()
+      .subscribe(customers=> this.customers=<ICustomer[]>customers,
+      error=>this.errorMessage=<any>error);
   }
   //Orly - This method is being used when the component is destroyed - component life cycle hook
   ngOnDestroy():void{
