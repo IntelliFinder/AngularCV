@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 //Orly - Note the service is registered in the app component level
-import {DataService} from './shared/data.service'
+//import {DataService} from './shared/data.service'
 
 @Component({
   selector: 'my-app',
@@ -26,7 +26,7 @@ import {DataService} from './shared/data.service'
 <router-outlet></router-outlet>
 </div>`,
 //Orly - the providers property is the way to register the services
-providers:[DataService],
+//providers:[DataService],
 })
 export class AppComponent  {
     showImage: boolean = true;

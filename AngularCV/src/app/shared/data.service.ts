@@ -1,59 +1,47 @@
+//dependencies
 import{Injectable} from '@angular/core';
 import{IFlower} from '../flower-list/flower';
 import{ICustomer} from '../customer-list/customer';
 
+//Http handling
+import { Observable } from "rxjs/Observable";
+import { Http, Response } from "@angular/http";
+
+//rxjs http extensions
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 //Orly - use Injectable to indicate it's a service
 @Injectable()
 export class DataService{
+  //server-mendated links
+  private _flowerURL='http://localhost:3000/flower.json'
+  private _customerURL='http://localhost:3000/customer.json'
+  //constructor - best practice not to have any methods inside it
+  constructor(private _http:Http){}
   //Orly - This method returns all the flower list data
-  getFlower():IFlower[]{
-    return [{
-      "Institution":"Technion",
-      "Degree":"BSc.",
-      "StartDate": new Date("February 4, 2016"),
-      "EndDate": new Date("February 29, 2016"),
-      "Grade":85,
-    },
-    {
-      "Institution":"Columbia",
-      "Degree":"BSc.",
-      "StartDate": new Date("February 4, 2012"),
-      "EndDate": new Date("February 4, 2016"),
-      "Grade":85,
-    },
-    {
-      "Institution":"HofHacarmel",
-      "Degree":"BSc.",
-      "StartDate": new Date("February 4, 2016"),
-      "EndDate": new Date("February 4, 2016"),
-      "Grade":85,
-    },
-  ];
+  getFlower():Observable<IFlower[]>{
+    return this._http.get(this._flowerURL)
+    .map((response:Response)=><IFlower[]>this.extractData(response))
+    .do(data=>console.log("Data from file:"+JSON.stringify(data)))
+    .catch(this.handleError)
+
 }
   //Orly - This method returns customer list data
-  getCustomer():ICustomer[]{
-    return[
-    {
-      "Workplace": 'Frenzy-Hooli ',
-      "Location": 'Tel Aviv',
-      "StartDate": new Date("February 4, 2016  "),
-      "EndDate": new Date("February 4, 2016  "),
-      "Position": 'important',
-    },
-    {
-      "Workplace": 'Frenzy ',
-      "Location": 'Tel Aviv',
-      "StartDate": new Date("February 4, 2016  "),
-      "EndDate": new Date("February 4, 2016  "),
-      "Position": 'Very important',
-    },
-   {
-      "Workplace": 'Catering',
-      "Location": 'Tel Aviv',
-      "StartDate": new Date("February 4, 2016  "),
-      "EndDate": new Date("February 4, 2016  "),
-      "Position": 'Supreme important',
-    },
-  ];
+  getCustomer():Observable<ICustomer[]>{
+    return this._http.get(this._customerURL)
+    .map((response:Response)=><ICustomer[]>this.extractData(response))
+    .do(data=>console.log('Data from file'+JSON.stringify(data)))
+    .catch(this.handleError)
   }
+  private extractData(response:Response){
+    let body=response.json();
+    console.log('Response body:'+body)
+    return body;
+  }
+  private handleError(error:Response){
+    console.error(error);
+    return Observable.throw(error.json().error||'server error');
+  }
+
 }

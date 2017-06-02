@@ -1,7 +1,7 @@
 export interface ICustomer{
       Workplace:string;
       Location:string;
-      StartDate: Date;
-      EndDate: Date;
+      StartDate: string;
+      EndDate: string;
       Position: string;
   }
