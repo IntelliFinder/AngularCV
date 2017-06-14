@@ -15,13 +15,16 @@ var CustomerListComponent = (function () {
     function CustomerListComponent(_dataService) {
         this._dataService = _dataService;
         this.filterByCustomerLastName = "";
+        this.errorMessage = "";
     }
     ;
     //Orly - This method is being used when the component is initialized - component life cycle hook
     CustomerListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log('Initializing CustomerListComponent......');
         //Orly - this is the invocation of the method that returns the customer list data
-        this.customers = this._dataService.getCustomer();
+        this._dataService.getCustomer()
+            .subscribe(function (customers) { return _this.customers = customers; }, function (error) { return _this.errorMessage = error; });
     };
     //Orly - This method is being used when the component is destroyed - component life cycle hook
     CustomerListComponent.prototype.ngOnDestroy = function () {

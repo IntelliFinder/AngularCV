@@ -16,15 +16,18 @@ var FlowerListComponent = (function () {
         this._dataService = _dataService;
         //Orly - These properties are used to fill the flower list table & to dispaly the flower images in the right size
         this.filterByFlowerName = "";
+        this.errorMessage = "";
     }
     ;
     //Orly - This method toggles the showImage flag and is invoked when the button is clicked
     //toggleImage():void{this.showImage=!this.showImage};
     //Orly - This method is being used when the component is initialized - component life cycle hook
     FlowerListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log('Initializing FlowerListComponent......');
         //Orly - this is the invocation of the method that returns the flower list data
-        this.flowers = this._dataService.getFlower();
+        this._dataService.getFlower()
+            .subscribe(function (flowers) { return _this.flowers = flowers; }, function (error) { return _this.errorMessage = error; });
     };
     //Orly - This method is being used when the component is destroyed - component life cycle hook
     FlowerListComponent.prototype.ngOnDestroy = function () {

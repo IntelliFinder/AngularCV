@@ -1,6 +1,6 @@
-​let http = require('http');
-let url = require('url');
-let fs = require('fs');
+​const http = require('http');
+const url = require('url');
+const fs = require('fs');
 
 http.createServer( function(req, res) {
     var myFile = url.parse(req.url, true);
@@ -14,8 +14,8 @@ http.createServer( function(req, res) {
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.write(data);
         console.log(filename)
-        res.end();
+        return res.end();
     });
-}).listen(8000);//listen on non-assignable port to avoid the client and server to load on the same port
+}).listen(8080);//listen on non-assignable port to avoid the client and server to load on the same port
 
 console.log('Server is Listening at port 8000');
