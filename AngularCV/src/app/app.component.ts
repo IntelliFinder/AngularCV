@@ -12,8 +12,8 @@ import { Component } from '@angular/core';
         <a class="navbar-brand">{{name}}</a>
         <ul class="nav navbar-nav">
            <li><a [routerLink]="['/#/welcome']">Home</a>
-           <li><a [routerLink]="['/#/flowers']">Flowers</a></li>
-           <li><a [routerLink]="['/#/customers']">Customers</a></li>
+           <li><a [routerLink]="['/#/flowers']">Education</a></li>
+           <li><a [routerLink]="['/#/customers']">Experience</a></li>
         </ul>
       </div>
     </nav>

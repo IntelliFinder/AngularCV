@@ -25,7 +25,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n  <div>\n    <nav class=\"navbar navbar-default\">\n      <div class=\"container-fluid\">\n        <a class=\"navbar-brand\">{{name}}</a>\n        <ul class=\"nav navbar-nav\">\n           <li><a [routerLink]=\"['/#/welcome']\">Home</a>\n           <li><a [routerLink]=\"['/#/flowers']\">Flowers</a></li>\n           <li><a [routerLink]=\"['/#/customers']\">Customers</a></li>\n        </ul>\n      </div>\n    </nav>\n</div>\n\n<div class='container'>\n    <img src='app/img/profile.jpg'width=\"150\" height=\"150\" alt={{alt}} border={{border}} *ngIf=\"showImage\" />\n    <br/>\n  <button (click)='toggleImage()'>{{showImage?\"Hide \":\"Show \"}}image</button>\n<router-outlet></router-outlet>\n</div>",
+            template: "\n  <div>\n    <nav class=\"navbar navbar-default\">\n      <div class=\"container-fluid\">\n        <a class=\"navbar-brand\">{{name}}</a>\n        <ul class=\"nav navbar-nav\">\n           <li><a [routerLink]=\"['/#/welcome']\">Home</a>\n           <li><a [routerLink]=\"['/#/flowers']\">Education</a></li>\n           <li><a [routerLink]=\"['/#/customers']\">Experience</a></li>\n        </ul>\n      </div>\n    </nav>\n</div>\n\n<div class='container'>\n    <img src='app/img/profile.jpg'width=\"150\" height=\"150\" alt={{alt}} border={{border}} *ngIf=\"showImage\" />\n    <br/>\n  <button (click)='toggleImage()'>{{showImage?\"Hide \":\"Show \"}}image</button>\n<router-outlet></router-outlet>\n</div>",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
